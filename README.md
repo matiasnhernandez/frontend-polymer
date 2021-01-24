@@ -1,86 +1,41 @@
-# Polymer App Toolbox - Starter Kit
+# Practitioner Frontend App - Polymer 3
 
-[![Build Status](https://travis-ci.org/Polymer/polymer-starter-kit.svg?branch=master)](https://travis-ci.org/Polymer/polymer-starter-kit)
+Esta es una aplicacion contruida en Polymer 3 en base al polymer-3-starter-kit
 
-This template is a starting point for building apps using a drawer-based
-layout. The layout is provided by `app-layout` elements.
+Esta app posee las siguientes funcionalidades:
 
-This template, along with the `polymer-cli` toolchain, also demonstrates use
-of the "PRPL pattern" This pattern allows fast first delivery and interaction with
-the content at the initial route requested by the user, along with fast subsequent
-navigation by pre-caching the remaining components required by the app and
-progressively loading them on-demand as the user navigates through the app.
+* **Alta de usuario** Se realiza Alta de usuario
+* **Consulta y modificacion de usuarios** Se realiza consulta de los datos del usuario y modificacion de los mismos.
+* **Login** Se realiza login con usuario y clave
+* **Alta de cuentas** Se realiza Alta de cuentas en base a tipo de cuenta, moneda y sucursal.
+* **Consulta de cuentas** Se consultan las cuentas del usuario
 
-The PRPL pattern, in a nutshell:
 
-* **Push** components required for the initial route
-* **Render** initial route ASAP
-* **Pre-cache** components for remaining routes
-* **Lazy-load** and progressively upgrade next routes on-demand
+### Repo Github
 
-### Setup
-
-##### Prerequisites
-
-Install [Polymer CLI](https://github.com/Polymer/polymer-cli) using
-[npm](https://www.npmjs.com) (we assume you have pre-installed [node.js](https://nodejs.org)).
-
-    npm install -g polymer-cli@next
-
-##### Initialize project from template
-
-    mkdir my-app
-    cd my-app
-    polymer init polymer-3-starter-kit
-
-### Start the development server
-
-This command serves the app at `http://127.0.0.1:8081` and provides basic URL
-routing for the app:
-
-    npm start
+`https://github.com/matiasnhernandez/frontend-polymer`
 
 ### Build
 
-The `npm run build` command builds your Polymer application for production, using build configuration options provided by the command line or in your project's `polymer.json` file.
+`npm run build`
 
-You can configure your `polymer.json` file to create multiple builds. This is necessary if you will be serving different builds optimized for different browsers. You can define your own named builds, or use presets. See the documentation on [building your project for production](https://www.polymer-project.org/3.0/toolbox/build-for-production) for more information.
-
-The Polymer Starter Kit is configured to create three builds. These builds will be output to a subdirectory under the `build/` directory as follows:
+Contruye la aplicacion en la carpeta `/build`, actualmente esta configurada en el `polymer.json` para que construya el `es5-bundled`
 
 ```
 build/
   es5-bundled/
-  es6-bundled/
-  esm-bundled/
 ```
 
 * `es5-bundled` is a bundled, minified build with a service worker. ES6 code is compiled to ES5 for compatibility with older browsers.
-* `es6-bundled` is a bundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that can handle ES6 code - see [building your project for production](https://www.polymer-project.org/3.0/toolbox/build-for-production#compiling) for a list.
-* `esm-bundled` is a bundled, minified build with a service worker. It uses standard ES module import/export statements for browsers that support them.
 
-Run `polymer help build` for the full list of available options and optimizations. Also, see the documentation on the [polymer.json specification](https://www.polymer-project.org/3.0/docs/tools/polymer-json) and [building your Polymer application for production](https://www.polymer-project.org/3.0/toolbox/build-for-production).
+### Serve
 
-### Preview the build
+    npm start
 
-This command serves your app. Replace `build-folder-name` with the folder name of the build you want to serve.
+Este comando levanta un server Express en nodejs en `http://127.0.0.1:3000` que sirve la app generada en `build/es5-bundled/`
 
-    npm start build/build-folder-name/
+### Deploy automatico e integracion continua
 
-### Run tests
+Esta app se deploya automaticamente en Heroku
 
-This command will run [Web Component Tester](https://github.com/Polymer/web-component-tester)
-against the browsers currently installed on your machine:
-
-    npm test
-
-If running Windows you will need to set the following environment variables:
-
-- LAUNCHPAD_BROWSERS
-- LAUNCHPAD_CHROME
-
-Read More here [daffl/launchpad](https://github.com/daffl/launchpad#environment-variables-impacting-local-browsers-detection)
-
----
-
-Looking for our older PSK2 Polycast or migration blog post? See [the previous README](https://github.com/Polymer/polymer-starter-kit/blob/v3.2.1/README.md).
+`https://frontend-polymer.herokuapp.com/`
