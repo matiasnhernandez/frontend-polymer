@@ -152,7 +152,7 @@ class PractitionerApp extends PolymerElement {
       subroute: Object,
       storedUser: { 
         type: Object,
-        value:{},
+        value:{loggedin: false},
         notify: true,
         reflectToAttribute: true
       }
@@ -169,20 +169,25 @@ class PractitionerApp extends PolymerElement {
   _routePageChanged(page) {
 
     this.getUserFromLocalStorage();
+
     if (!page) {
       this.page = 'home-page';
     } else if (['home-page','login', 'registrar', 'datos-usuario', 'mis-cuentas', 'alta-cuenta'].indexOf(page) !== -1) {
 
-      if (!this.storedUser.loggedin){
-        if (['registrar', 'view404', 'home-page'].indexOf(page) !== -1 ){
-          this.page = page;
-        }else{
-          this.page = 'login';
-        }
+      if (this.storedUser == null){
+        this.page = 'login';
       }else{
-        this.page = page;
-      }
-
+        if (!this.storedUser.loggedin){
+          if (['registrar', 'view404', 'home-page'].indexOf(page) !== -1 ){
+            this.page = page;
+          }else{
+            this.page = 'login';
+          }
+        }else{
+          this.page = page;
+        }
+      }  
+      
     } else {
       this.page = 'view404';
     }
@@ -197,6 +202,10 @@ class PractitionerApp extends PolymerElement {
     var user = JSON.parse(localStorage.getItem("storedUser"));
     if (user != 'undefined'){
       this.storedUser = user;
+    }else{
+      this.storedUser = {};
+      this.storedUser.loggedin = false;
+      console.log('lalalalalallaa');
     }
 
   }

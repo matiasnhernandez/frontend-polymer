@@ -6,7 +6,7 @@
   "license": "BSD-3-Clause",
   "repository": "Polymer/polymer-starter-kit",
   "scripts": {
-    "start": "polymer serve build/es5-bundled/",
+    "start": "node server.js",
     "build": "polymer build",
     "lint": "polymer lint",
     "test": "polymer test",
@@ -32,7 +32,9 @@
     "@polymer/paper-item": "^3.0.1",
     "@polymer/paper-listbox": "^3.0.1",
     "@polymer/polymer": "^3.0.0",
-    "@webcomponents/webcomponentsjs": "^2.0.0"
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "express": "^4.17.1",
+    "local-web-server": "^4.2.1"
   },
   "devDependencies": {
     "polymer-cli": "^1.9.11",
