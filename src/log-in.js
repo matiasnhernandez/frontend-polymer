@@ -4,6 +4,7 @@ import '@polymer/iron-ajax/iron-ajax.js';
 import '@polymer/iron-input/iron-input.js';
 import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-input/paper-input.js';
+import '@polymer/paper-progress/paper-progress.js'
 import './log-out.js'
 import './my-icons.js';
 import './shared-styles.js';
@@ -46,11 +47,17 @@ class LogIn extends PolymerElement {
         @apply --paper-font-subhead;
         @apply --paper-input-container-input;
       }
+      paper-progress.blue {
+        --paper-progress-active-color: var(--paper-light-blue-500);
+        --paper-progress-secondary-color: var(--paper-light-blue-100);
+        margin-top: 20px;
+      }
     </style>
 
     <iron-ajax
       id="registerLoginAjax"
       method="post"
+      loading="{{loading}}"
       content-type="application/json"
       handle-as="text"
       on-response="handleUserResponse"
@@ -81,12 +88,18 @@ class LogIn extends PolymerElement {
         </iron-input>
       </paper-input-container>
 
-      <div class="wrapper-btns">
-        <paper-button raised class="primary" on-tap="postLogin">Log In</paper-button>
-        <a href='/registrar'>
-          <paper-button class="link">Sign Up</paper-button>
-        </a>
-      </div>
+      <template is="dom-if" if="{{loading}}">
+        <paper-progress class="blue" value="10" indeterminate="true" style="width:100%;"></paper-progress>
+      </template>
+
+      <template is="dom-if" if="{{!loading}}">
+        <div class="wrapper-btns">
+          <paper-button raised class="primary" on-tap="postLogin">Log In</paper-button>
+          <a href='/registrar'>
+            <paper-button class="link">Sign Up</paper-button>
+          </a>
+        </div>
+      </template>
 
     </div>
     `;
@@ -105,7 +118,12 @@ class LogIn extends PolymerElement {
           notify: true,
           reflectToAttribute: true
         },
-        error: String
+        error: String,
+        loading: {
+          type: Boolean,
+          notify: true,
+          value: false
+        }
     };
   }
 

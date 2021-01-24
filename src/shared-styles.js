@@ -59,6 +59,23 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         font-size: 14px;
         padding: 10px;
       }
+      .loader {
+        height: 100%;
+        display: -webkit-flexbox;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        justify-content: center;
+        margin-top: 100px;
+      }
+      paper-spinner {
+        width: 150px;
+        height: 150px;
+      }
     </style>
   </template>
 </dom-module>`;

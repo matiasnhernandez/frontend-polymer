@@ -9,6 +9,7 @@
  */
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import '@polymer/paper-spinner/paper-spinner.js';
 import './cuenta-card.js';
 import './shared-styles.js';
 
@@ -27,11 +28,13 @@ class MisCuentas extends PolymerElement {
 
           padding: 10px;
         }
+        
       </style>
 
       <iron-ajax
         id="consultaCuentasAjax"
         method="get"
+        loading="{{loading}}"
         content-type="application/json"
         handle-as="text"
         on-response="handleConsultarResponse"
@@ -42,12 +45,22 @@ class MisCuentas extends PolymerElement {
         <p class="alert-error"><strong>Error:</strong> [[error]]</p>
       </template>
 
-      
+      <template is="dom-if" if="{{loading}}">
+        <div class="loader">
+          <paper-spinner active></paper-spinner>
+        </div>
+      </template>
+
+      <template is="dom-if" if="{{!loading}}">
         <dom-repeat items="{{cuentas}}">
           <template>
             <cuenta-card show-saldo edit-buttons cuenta="{{item}}"></cuenta-card>
           </template>
         </dom-repeat>
+      </template>
+
+      
+      
       
 
     `;
@@ -69,6 +82,11 @@ class MisCuentas extends PolymerElement {
       active: {
         type: Boolean,
         observer: '_activeChanged'
+      },
+      loading: {
+        type: Boolean,
+        notify: true,
+        value: false
       }
     }
   }

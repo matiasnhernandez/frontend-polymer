@@ -103,13 +103,6 @@ class SignUp extends PolymerElement {
       </paper-input-container>
 
       <paper-input-container>
-        <label slot="input">Fecha de Nacimiento</label>
-        <iron-input slot="input" bind-value="{{formData.fechaNacimiento}}">
-          <input class="input-style" id="fechaNacimiento" type="date" value="{{formData.fechaNacimiento}}" placeholder="Fecha de Nacimiento">
-        </iron-input>
-      </paper-input-container>
-
-      <paper-input-container>
         <label>Password</label>
         <iron-input slot="input" bind-value="{{formData.password}}">
           <input id="password" type="password" value="{{formData.password}}" placeholder="Password" on-change="passmatch">

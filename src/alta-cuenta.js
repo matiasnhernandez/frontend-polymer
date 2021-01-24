@@ -12,6 +12,7 @@ import '@polymer/neon-animation/animations/scale-up-animation.js';
 import '@polymer/neon-animation/animations/fade-out-animation.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/iron-iconset-svg/iron-iconset-svg.js';
+import '@polymer/paper-spinner/paper-spinner.js';
 import './cuenta-card.js';
 import './my-icons.js';
 import './shared-styles.js';
@@ -67,6 +68,7 @@ class AltaCuenta extends PolymerElement {
     <iron-ajax
       id="AltaCuentaAjax"
       method="post"
+      loading="{{loading}}"
       content-type="application/json"
       handle-as="text"
       on-response="handleCuentaResponse"
@@ -75,68 +77,85 @@ class AltaCuenta extends PolymerElement {
 
     <app-location route="{{route}}"></app-location>
 
-    <div class="card">
-      
-      <h1>Nueva cuenta</h1>
+    <template is="dom-if" if="[[error]]">
+      <p class="alert-error"><strong>Error:</strong> [[error]]</p>
+    </template>
 
-      <p>Complete los siguientes datos para dar de alta una nueva cuenta.</p>
-
-      <template is="dom-if" if="[[error]]">
-        <p class="alert-error"><strong>Error:</strong> [[error]]</p>
-      </template>
-
-      <div>
-        <paper-dropdown-menu label="Tipo de Cuenta">
-          <paper-listbox slot="dropdown-content" selected="{{formData.tipoCuenta}}" attr-for-selected="myid">
-            <paper-item myid="40">Caja de Ahorros</paper-item>
-            <paper-item myid="20">Cuenta Corriente</paper-item>
-          </paper-listbox>
-        </paper-dropdown-menu>
+    <template is="dom-if" if="{{loading}}">
+      <div class="loader">
+        <paper-spinner active></paper-spinner>
       </div>
+    </template>
 
-      <div>
-        <paper-dropdown-menu label="Moneda">
-          <paper-listbox slot="dropdown-content" selected="{{formData.moneda}}" attr-for-selected="myid">
-            <paper-item myid="0">Pesos</paper-item>
-            <paper-item myid="2">Dolares</paper-item>
-            <paper-item myid="8">Euros</paper-item>
-          </paper-listbox>
-        </paper-dropdown-menu>
-      </div>
+    <template is="dom-if" if="{{!loading}}">
 
-      <div>
-        <paper-dropdown-menu label="Sucursal">
-          <paper-listbox slot="dropdown-content" selected="{{formData.sucursal}}" attr-for-selected="myid">
-
-          <iron-ajax auto url="./data/sucursales.json" handle-as="json" last-response="{{sucursales}}" id="ajaxLoader"></iron-ajax>
-          <template is="dom-repeat" items="{{sucursales}}">
-              <paper-item myid="{{item.codigo}}">{{item.descripcion}} - {{item.direccion}}</paper-item>
-          </template>
-
-          </paper-listbox>
-        </paper-dropdown-menu>
-      </div>
-
-      <paper-dialog id="altaCorrecta" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
-        <h2>Alta correcta</h2>
+      <div class="card">
         
-        <p>
-          <iron-icon class="success" icon="done"></iron-icon>
-          <span>Cuenta creada correctamente</span>
-        </p>
-        
-        <cuenta-card cuenta="{{cuenta}}" ></cuenta-card>
-        
-        <div class="buttons">
-          <paper-button dialog-confirm autofocus>Cerrar</paper-button>
+        <h1>Nueva cuenta</h1>
+
+        <p>Complete los siguientes datos para dar de alta una nueva cuenta.</p>
+
+        <div>
+          <paper-dropdown-menu label="Tipo de Cuenta">
+            <paper-listbox slot="dropdown-content" selected="{{formData.tipoCuenta}}" attr-for-selected="myid">
+              <paper-item myid="40">Caja de Ahorros</paper-item>
+              <paper-item myid="20">Cuenta Corriente</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
         </div>
-      </paper-dialog>
-      
-      <div class="wrapper-btns">
-        <paper-button raised class="primary" on-tap="postAltaCuenta">Crear Cuenta</paper-button>
-      </div>
 
-    </div>
+        <div>
+          <paper-dropdown-menu label="Moneda">
+            <paper-listbox slot="dropdown-content" selected="{{formData.moneda}}" attr-for-selected="myid">
+              <paper-item myid="0">Pesos</paper-item>
+              <paper-item myid="2">Dolares</paper-item>
+              <paper-item myid="8">Euros</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
+        </div>
+
+        <div>
+          <paper-dropdown-menu label="Sucursal">
+            <paper-listbox slot="dropdown-content" selected="{{formData.sucursal}}" attr-for-selected="myid">
+
+            <iron-ajax 
+              id="ajaxLoader"
+              auto 
+              loading="{{loading}}" 
+              url="./data/sucursales.json" 
+              handle-as="json" 
+              last-response="{{sucursales}}">
+            </iron-ajax>
+            
+            <template is="dom-repeat" items="{{sucursales}}">
+                <paper-item myid="{{item.codigo}}">{{item.descripcion}} - {{item.direccion}}</paper-item>
+            </template>
+
+            </paper-listbox>
+          </paper-dropdown-menu>
+        </div>
+
+        <paper-dialog id="altaCorrecta" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+          <h2>Alta correcta</h2>
+          
+          <p>
+            <iron-icon class="success" icon="done"></iron-icon>
+            <span>Cuenta creada correctamente</span>
+          </p>
+          
+          <cuenta-card cuenta="{{cuenta}}" ></cuenta-card>
+          
+          <div class="buttons">
+            <paper-button dialog-confirm autofocus>Cerrar</paper-button>
+          </div>
+        </paper-dialog>
+        
+        <div class="wrapper-btns">
+          <paper-button raised class="primary" on-tap="postAltaCuenta">Crear Cuenta</paper-button>
+        </div>
+
+      </div>
+    </template>
     `;
   }
 
@@ -156,7 +175,12 @@ class AltaCuenta extends PolymerElement {
           type: Object,
           notify: true,
         },
-        error: String
+        error: String,
+        loading: {
+          type: Boolean,
+          notify: true,
+          value: false
+        }
     };
   }
 
