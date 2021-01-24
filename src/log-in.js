@@ -1,0 +1,154 @@
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import '@polymer/app-route/app-location.js';
+import '@polymer/iron-ajax/iron-ajax.js';
+import '@polymer/iron-input/iron-input.js';
+import '@polymer/paper-button/paper-button.js';
+import '@polymer/paper-input/paper-input.js';
+import './log-out.js'
+import './my-icons.js';
+import './shared-styles.js';
+
+class LogIn extends PolymerElement {
+
+  static get template() {
+
+    return html`
+
+    <style include="shared-styles">
+      :host {
+        display: block;
+
+        padding: 10px;
+      }
+      .wrapper-btns {
+        margin-top: 15px;
+      }
+      paper-button.link {
+        color: #757575;
+      }
+      
+      input {
+        position: relative; /* to make a stacking context */
+        outline: none;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        background: transparent;
+        border: none;
+        color: var(--paper-input-container-input-color, var(--primary-text-color));
+        -webkit-appearance: none;
+        text-align: inherit;
+        vertical-align: bottom;
+        /* Firefox sets a min-width on the input, which can cause layout issues */
+        min-width: 0;
+        @apply --paper-font-subhead;
+        @apply --paper-input-container-input;
+      }
+    </style>
+
+    <iron-ajax
+      id="registerLoginAjax"
+      method="post"
+      content-type="application/json"
+      handle-as="text"
+      on-response="handleUserResponse"
+      on-error="handleUserError">
+    </iron-ajax>
+
+    <app-location route="{{route}}"></app-location>
+
+    <div id="loginCard" class="card">
+
+      <h1>Log In</h1>
+
+      <template is="dom-if" if="[[error]]">
+        <p class="alert-error"><strong>Error:</strong> [[error]]</p>
+      </template>
+
+      <paper-input-container>
+        <label slot="input">Usuario</label>
+        <iron-input slot="input" bind-value="{{formData.username}}">
+          <input class="input-style" id="username" type="text" value="{{formData.username}}" placeholder="Usuario">
+        </iron-input>
+      </paper-input-container>
+
+      <paper-input-container>
+        <label>Password</label>
+        <iron-input slot="input" bind-value="{{formData.password}}">
+          <input id="password" type="password" value="{{formData.password}}" placeholder="Password">
+        </iron-input>
+      </paper-input-container>
+
+      <div class="wrapper-btns">
+        <paper-button raised class="primary" on-tap="postLogin">Log In</paper-button>
+        <a href='/registrar'>
+          <paper-button class="link">Sign Up</paper-button>
+        </a>
+      </div>
+
+    </div>
+    `;
+  }
+
+  static get properties() {
+
+    return {
+        formData: {
+          type: Object,
+          value: {}
+        },
+        storedUser: { 
+          type: Object,
+          value:{},
+          notify: true,
+          reflectToAttribute: true
+        },
+        error: String
+    };
+  }
+
+  postLogin() {
+
+      this.$.registerLoginAjax.url = 'https://practitioner-backend-nodejs.herokuapp.com/api/v1/usuarios/login';
+      this.$.registerLoginAjax.body = this.formData;
+      this.$.registerLoginAjax.generateRequest();
+  }
+
+  handleUserResponse(event) {
+
+      var response = JSON.parse(event.detail.response);
+
+      if (response.data.token) {
+          this.error = '';
+          
+          this.storedUser = {};
+          this.storedUser.datos = response.data.usuario;
+          this.storedUser.access_token = response.data.token;
+          this.storedUser.loggedin = true;
+          
+          localStorage.setItem("storedUser", JSON.stringify(this.storedUser));
+
+          var customEvent = new CustomEvent('login', {
+            bubbles: true, 
+            composed: true,
+            detail: {storedUser: this.storedUser}
+          });
+          this.dispatchEvent(customEvent);
+          
+          this.set('route.path', '/home-page');
+      }
+
+    this.formData = {};
+  }
+
+  handleUserError(event) {
+
+    var errorResponse = JSON.parse(event.detail.request.xhr.response);
+    this.error = errorResponse.mensaje;
+  }
+
+}
+
+window.customElements.define('log-in', LogIn);
