@@ -21,7 +21,8 @@ app.get('/', function(req, res){
   res.sendFile("index.html", {root: '.'});
 });
 
-// Tell the app to listen for requests on port 8080
-app.listen(8080, function () {
-  console.log('Example app listening on port 8080!');
+var port = process.env.PORT || 3000;
+// Tell the app to listen for requests on port 3000
+app.listen(port, function () {
+  console.log('Example app listening on port ' + port);
 });
