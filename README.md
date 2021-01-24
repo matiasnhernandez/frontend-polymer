@@ -13,7 +13,7 @@ Esta app posee las siguientes funcionalidades:
 
 ### Repo Github
 
-`https://github.com/matiasnhernandez/frontend-polymer`
+<https://github.com/matiasnhernandez/frontend-polymer>
 
 ### Build
 
@@ -32,10 +32,10 @@ build/
 
     npm start
 
-Este comando levanta un server Express en nodejs en `http://127.0.0.1:3000` que sirve la app generada en `build/es5-bundled/`
+Este comando levanta un server Express en nodejs en <http://127.0.0.1:3000> que sirve la app generada en `build/es5-bundled/`
 
 ### Deploy automatico e integracion continua
 
 Esta app se deploya automaticamente en Heroku
 
-`https://frontend-polymer.herokuapp.com/`
+<https://frontend-polymer.herokuapp.com/>
