@@ -13,7 +13,6 @@ app.use('/src', express.static('src'));
 app.use('/bower_components', express.static('bower_components'));
 
 app.use('/images', express.static('images'));
-app.use('/data', express.static('data'));
 app.use('/node_modules', express.static('node_modules'));
 
 // Render index.html on the main page, specify the root

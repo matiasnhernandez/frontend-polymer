@@ -75,6 +75,16 @@ class AltaCuenta extends PolymerElement {
       on-error="handleCuentaError">
     </iron-ajax>
 
+    <iron-ajax 
+      id="SucursalesAjax"
+      method="get"
+      loading="{{loading}}" 
+      content-type="application/json"
+      handle-as="text"
+      on-response="handleSucursalesResponse"
+      on-error="handleSucursalesError">
+    </iron-ajax>
+
     <app-location route="{{route}}"></app-location>
 
     <template is="dom-if" if="[[error]]">
@@ -118,15 +128,6 @@ class AltaCuenta extends PolymerElement {
           <paper-dropdown-menu label="Sucursal">
             <paper-listbox slot="dropdown-content" selected="{{formData.sucursal}}" attr-for-selected="myid">
 
-            <iron-ajax 
-              id="ajaxLoader"
-              auto 
-              loading="{{loading}}" 
-              url="./data/sucursales.json" 
-              handle-as="json" 
-              last-response="{{sucursales}}">
-            </iron-ajax>
-            
             <template is="dom-repeat" items="{{sucursales}}">
                 <paper-item myid="{{item.codigo}}">{{item.descripcion}} - {{item.direccion}}</paper-item>
             </template>
@@ -180,14 +181,35 @@ class AltaCuenta extends PolymerElement {
           type: Boolean,
           notify: true,
           value: false
+        },
+        active: {
+          type: Boolean,
+          observer: '_activeChanged'
         }
+        
     };
   }
 
+  _activeChanged(newValue, oldValue) {
+    if (newValue){
+      if (typeof this.sucursales == 'undefined' || this.sucursales.length == 0){
+        this.getSucursales();
+      }
+    }
+  }
   _informarAltaCorrecta(){
 
     this.$.altaCorrecta.toggle();
   }
+
+  getSucursales() {
+
+    var storedUser = JSON.parse(localStorage.getItem("storedUser"));
+    this.$.SucursalesAjax.url = 'https://practitioner-backend-nodejs.herokuapp.com/api/v1/sucursales';
+    this.$.SucursalesAjax.headers['Authorization'] = 'Bearer ' + storedUser.access_token;
+    this.$.SucursalesAjax.generateRequest();
+  }
+
   postAltaCuenta() {
 
     console.log('formData: ' + this.formData);
@@ -213,6 +235,23 @@ class AltaCuenta extends PolymerElement {
   }
 
   handleCuentaError(event) {
+
+    var errorResponse = JSON.parse(event.detail.request.xhr.response);
+    this.error = errorResponse.mensaje;
+  }
+
+  handleSucursalesResponse(event) {
+
+    var response = JSON.parse(event.detail.response);
+
+    if (!response.data.error) {
+      this.error = '';
+      this.sucursales = response.data;
+    }
+
+  }
+
+  handleSucursalesError(event) {
 
     var errorResponse = JSON.parse(event.detail.request.xhr.response);
     this.error = errorResponse.mensaje;
