@@ -3,7 +3,7 @@ import '@polymer/paper-spinner/paper-spinner.js';
 import './transferencia-card.js';
 import '../shared-styles.js';
 
-class MisTransferencias extends PolymerElement {
+class TransferenciaList extends PolymerElement {
   
   constructor(){
     super();
@@ -120,4 +120,4 @@ class MisTransferencias extends PolymerElement {
   }
 }
 
-window.customElements.define('mis-transferencias', MisTransferencias);
+window.customElements.define('transferencia-list', TransferenciaList);

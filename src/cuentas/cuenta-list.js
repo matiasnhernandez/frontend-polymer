@@ -3,7 +3,7 @@ import '@polymer/paper-spinner/paper-spinner.js';
 import './cuenta-card.js';
 import '../shared-styles.js';
 
-class MisCuentas extends PolymerElement {
+class CuentaList extends PolymerElement {
   
   constructor(){
     super();
@@ -120,4 +120,4 @@ class MisCuentas extends PolymerElement {
   }
 }
 
-window.customElements.define('mis-cuentas', MisCuentas);
+window.customElements.define('cuenta-list', CuentaList);

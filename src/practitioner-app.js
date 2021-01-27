@@ -114,12 +114,15 @@ class PractitionerApp extends PolymerElement {
           <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
             
             <a class="home" name="home-page" href="[[rootPath]]home-page">Home</a>
+            
             <h2>Cuentas</h2>
-            <a name="mis-cuentas" href="[[rootPath]]mis-cuentas">Mis cuentas</a>
-            <a name="alta-cuenta" href="[[rootPath]]alta-cuenta">Crear cuenta</a>
+            <a name="cuenta-list" href="[[rootPath]]cuenta-list">Mis cuentas</a>
+            <a name="cuenta-alta" href="[[rootPath]]cuenta-alta">Crear cuenta</a>
+            
             <h2>Transferencias</h2>
-            <a name="nueva-transferencia" href="[[rootPath]]nueva-transferencia">Transferir</a>
-            <a name="mis-transferencias" href="[[rootPath]]mis-transferencias">Mis transferencias</a>
+            <a name="transferencia-alta" href="[[rootPath]]transferencia-alta">Transferir</a>
+            <a name="transferencia-list" href="[[rootPath]]transferencia-list">Mis transferencias</a>
+
           </iron-selector>
         </app-drawer>
 
@@ -144,11 +147,11 @@ class PractitionerApp extends PolymerElement {
             <home-page name="home-page"></home-page>
             <log-in name="login"></log-in>
             <datos-usuario name="datos-usuario"></datos-usuario>
-            <mis-cuentas name="mis-cuentas"></mis-cuentas>
-            <alta-cuenta name="alta-cuenta"></alta-cuenta>
+            <cuenta-list name="cuenta-list"></cuenta-list>
+            <cuenta-alta name="cuenta-alta"></cuenta-alta>
             <sign-up name="sign-up"></sign-up>
-            <nueva-transferencia name="nueva-transferencia"></nueva-transferencia>
-            <mis-transferencias name="mis-transferencias"></mis-transferencias>
+            <transferencia-alta name="transferencia-alta"></transferencia-alta>
+            <transferencia-list name="transferencia-list"></transferencia-list>
             <my-view404 name="view404"></my-view404>
           </iron-pages>
         </app-header-layout>
@@ -188,7 +191,7 @@ class PractitionerApp extends PolymerElement {
 
     if (!page) {
       this.page = 'home-page';
-    } else if (['home-page','login', 'sign-up', 'datos-usuario', 'mis-cuentas', 'alta-cuenta', 'nueva-transferencia', 'mis-transferencias'].indexOf(page) !== -1) {
+    } else if (['home-page','login', 'sign-up', 'datos-usuario', 'cuenta-list', 'cuenta-alta', 'transferencia-alta', 'transferencia-list'].indexOf(page) !== -1) {
 
       if (this.storedUser == null){
         this.page = 'login';
@@ -241,17 +244,17 @@ class PractitionerApp extends PolymerElement {
       case 'datos-usuario':
         import('./usuarios/datos-usuario.js');
         break;
-      case 'mis-cuentas':
-        import('./cuentas/mis-cuentas.js');
+      case 'cuenta-list':
+        import('./cuentas/cuenta-list.js');
         break;
-      case 'alta-cuenta':
-        import('./cuentas/alta-cuenta.js');
+      case 'cuenta-alta':
+        import('./cuentas/cuenta-alta.js');
         break;
-      case 'nueva-transferencia':
-        import('./transferencias/nueva-transferencia.js');
+      case 'transferencia-alta':
+        import('./transferencias/transferencia-alta.js');
         break;
-      case 'mis-transferencias':
-        import('./transferencias/mis-transferencias.js');
+      case 'transferencia-list':
+        import('./transferencias/transferencia-list.js');
         break;
       case 'view404':
         import('./my-view404.js');

@@ -17,7 +17,7 @@ import './cuenta-card.js';
 import '../my-icons.js';
 import '../shared-styles.js';
 
-class AltaCuenta extends PolymerElement {
+class CuentaAlta extends PolymerElement {
 
   static get template() {
 
@@ -39,7 +39,7 @@ class AltaCuenta extends PolymerElement {
     </style>
 
     <iron-ajax
-      id="AltaCuentaAjax"
+      id="CuentaAltaAjax"
       method="post"
       loading="{{loading}}"
       content-type="application/json"
@@ -134,7 +134,7 @@ class AltaCuenta extends PolymerElement {
         </div>
 
         <div class="wrapper-btns">
-          <paper-button raised class="primary" on-tap="postAltaCuenta">Crear Cuenta</paper-button>
+          <paper-button raised class="primary" on-tap="postCuentaAlta">Crear Cuenta</paper-button>
         </div>
 
       </div>
@@ -192,15 +192,15 @@ class AltaCuenta extends PolymerElement {
     this.$.SucursalesAjax.generateRequest();
   }
 
-  postAltaCuenta() {
+  postCuentaAlta() {
 
     console.log('formData: ' + this.formData);
     
     var storedUser = JSON.parse(localStorage.getItem("storedUser"));
-    this.$.AltaCuentaAjax.url = 'https://practitioner-backend-nodejs.herokuapp.com/api/v1/cuentas';
-    this.$.AltaCuentaAjax.headers['Authorization'] = 'Bearer ' + storedUser.access_token;
-    this.$.AltaCuentaAjax.body = this.formData;
-    this.$.AltaCuentaAjax.generateRequest();
+    this.$.CuentaAltaAjax.url = 'https://practitioner-backend-nodejs.herokuapp.com/api/v1/cuentas';
+    this.$.CuentaAltaAjax.headers['Authorization'] = 'Bearer ' + storedUser.access_token;
+    this.$.CuentaAltaAjax.body = this.formData;
+    this.$.CuentaAltaAjax.generateRequest();
   }
 
   handleCuentaResponse(event) {
@@ -241,4 +241,4 @@ class AltaCuenta extends PolymerElement {
 
 }
 
-window.customElements.define('alta-cuenta', AltaCuenta);
+window.customElements.define('cuenta-alta', CuentaAlta);

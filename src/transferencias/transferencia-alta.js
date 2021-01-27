@@ -18,7 +18,7 @@ import '../my-icons.js';
 import '../shared-styles.js';
 import * as cuentaFunctions from '../cuentas/cuenta-functions.js';
 
-class NuevaTransferencia extends PolymerElement {
+class TransferenciaAlta extends PolymerElement {
 
   static get template() {
 
@@ -134,7 +134,7 @@ class NuevaTransferencia extends PolymerElement {
         </div>
 
         <div class="wrapper-btns">
-          <paper-button raised class="primary" on-tap="postNuevaTransferencia">Transferir</paper-button>
+          <paper-button raised class="primary" on-tap="postTransferenciaAlta">Transferir</paper-button>
         </div>
 
       </div>
@@ -246,7 +246,7 @@ class NuevaTransferencia extends PolymerElement {
     this.error = errorResponse.mensaje;
   }
 
-  postNuevaTransferencia() {
+  postTransferenciaAlta() {
 
     console.log('formData: ' + JSON.stringify(this.formData));
     
@@ -294,4 +294,4 @@ class NuevaTransferencia extends PolymerElement {
 
 }
 
-window.customElements.define('nueva-transferencia', NuevaTransferencia);
+window.customElements.define('transferencia-alta', TransferenciaAlta);
