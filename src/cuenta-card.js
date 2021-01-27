@@ -53,7 +53,7 @@ class CuentaCard extends PolymerElement {
       </style>
 
       <iron-ajax
-        id="cerrarCuentaAjax"
+        id="updateCuentaAjax"
         method="put"
         content-type="application/json"
         handle-as="text"
@@ -82,14 +82,18 @@ class CuentaCard extends PolymerElement {
         <div>Estado: <span>{{cuenta.estado}}</span></div>
 
         <template is="dom-if" if="[[editButtons]]">
-        <div class="container">
-          <div class="rigth">
-            <template is="dom-if" if="[[_getShowCerrar(cuenta.estado)]]">
-              <a name="cerrar" on-click="cerrarCuenta"><iron-icon icon="close"></iron-icon><span>Cerrar</span></a>
-            </template>
-            <a name="eliminar" on-click="eliminarCuenta"><iron-icon icon="delete"></iron-icon><span>Eliminar</span></a>
+          <div class="container">
+            <div class="rigth">
+              <template is="dom-if" if="[[_getShowCerrar(cuenta.estado)]]">
+                <a name="cerrar" on-click="cerrarCuenta"><iron-icon icon="close"></iron-icon><span>Cerrar</span></a>
+              </template>
+              <template is="dom-if" if="[[!_getShowCerrar(cuenta.estado)]]">
+                <a name="abrir" on-click="abrirCuenta"><iron-icon icon="check"></iron-icon><span>Abrir</span></a>
+              </template>
+              <a name="eliminar" on-click="eliminarCuenta"><iron-icon icon="delete"></iron-icon><span>Eliminar</span></a>
+            </div>
           </div>
-        </div>
+        </template>
 
       </div>
     `;
@@ -141,14 +145,25 @@ class CuentaCard extends PolymerElement {
   }
 
   cerrarCuenta() {
-    this.$.cerrarCuentaAjax.url = 'https://practitioner-backend-nodejs.herokuapp.com/api/v1/cuentas/' + this.cuenta._id;
+    this.$.updateCuentaAjax.url = 'https://practitioner-backend-nodejs.herokuapp.com/api/v1/cuentas/' + this.cuenta._id;
     var storedUser = JSON.parse(localStorage.getItem("storedUser"));
-    this.$.cerrarCuentaAjax.headers['Authorization'] = 'Bearer ' + storedUser.access_token;
+    this.$.updateCuentaAjax.headers['Authorization'] = 'Bearer ' + storedUser.access_token;
 
     this.cuenta.estado = 'cerrada';
-    this.$.cerrarCuentaAjax.body = this.cuenta;
+    this.$.updateCuentaAjax.body = this.cuenta;
 
-    this.$.cerrarCuentaAjax.generateRequest();
+    this.$.updateCuentaAjax.generateRequest();
+  }
+
+  abrirCuenta() {
+    this.$.updateCuentaAjax.url = 'https://practitioner-backend-nodejs.herokuapp.com/api/v1/cuentas/' + this.cuenta._id;
+    var storedUser = JSON.parse(localStorage.getItem("storedUser"));
+    this.$.updateCuentaAjax.headers['Authorization'] = 'Bearer ' + storedUser.access_token;
+
+    this.cuenta.estado = 'abierta';
+    this.$.updateCuentaAjax.body = this.cuenta;
+
+    this.$.updateCuentaAjax.generateRequest();
   }
 
   handleEliminarResponse(event) {

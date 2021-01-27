@@ -57,6 +57,9 @@ class AltaCuenta extends PolymerElement {
       paper-dropdown-menu{
         width: 80%;
       }
+      paper-input-container{
+        width: 80%;
+      }
       iron-icon.success {
         height: 50px;
         width: 50px;
@@ -97,6 +100,21 @@ class AltaCuenta extends PolymerElement {
       </div>
     </template>
 
+    <paper-dialog id="altaCorrecta" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+      <h2>Alta correcta</h2>
+      
+      <p>
+        <iron-icon class="success" icon="done"></iron-icon>
+        <span>Cuenta creada correctamente</span>
+      </p>
+      
+      <cuenta-card cuenta="{{cuenta}}" ></cuenta-card>
+      
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>Cerrar</paper-button>
+      </div>
+    </paper-dialog>
+
     <template is="dom-if" if="{{!loading}}">
 
       <div class="card">
@@ -136,21 +154,15 @@ class AltaCuenta extends PolymerElement {
           </paper-dropdown-menu>
         </div>
 
-        <paper-dialog id="altaCorrecta" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
-          <h2>Alta correcta</h2>
-          
-          <p>
-            <iron-icon class="success" icon="done"></iron-icon>
-            <span>Cuenta creada correctamente</span>
-          </p>
-          
-          <cuenta-card cuenta="{{cuenta}}" ></cuenta-card>
-          
-          <div class="buttons">
-            <paper-button dialog-confirm autofocus>Cerrar</paper-button>
-          </div>
-        </paper-dialog>
-        
+        <div>
+          <paper-input-container>
+            <label slot="input">Saldo</label>
+            <iron-input slot="input" bind-value="{{formData.saldo}}">
+              <input class="input-style" id="saldo" type="number" value="{{formData.saldo}}" placeholder="Saldo">
+            </iron-input>
+          </paper-input-container>
+        </div>
+
         <div class="wrapper-btns">
           <paper-button raised class="primary" on-tap="postAltaCuenta">Crear Cuenta</paper-button>
         </div>
