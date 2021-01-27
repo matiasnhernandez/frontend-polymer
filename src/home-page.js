@@ -15,6 +15,9 @@ class HomePage extends PolymerElement {
 
           padding: 10px;
         }
+        li {
+          margin: 10px;
+        }
       </style>
 
       <div class="card">
@@ -28,6 +31,8 @@ class HomePage extends PolymerElement {
           <li>Modificacion de usuarios (Requiere login)</li>
           <li>Creacion de cuentas (Requiere login)</li>
           <li>Consulta de cuentas (Requiere login)</li>
+          <li>Transferencias entre cuentas (Requiere login)</li>
+          <li>Consulta de transferencias (Requiere login)</li>
         </ul>
 
         

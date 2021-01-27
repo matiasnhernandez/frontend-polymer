@@ -20,8 +20,8 @@ app.get('/', function(req, res){
   res.sendFile("index.html", {root: '.'});
 });
 
-var port = process.env.PORT || 3000;
-// Tell the app to listen for requests on port 3000
+var port = process.env.PORT || 3001;
+// Tell the app to listen for requests on port 3001
 app.listen(port, function () {
   console.log('Example app listening on port ' + port);
 });

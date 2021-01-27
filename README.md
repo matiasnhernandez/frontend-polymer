@@ -9,6 +9,8 @@ Esta app posee las siguientes funcionalidades:
 * **Login** Se realiza login con usuario y clave
 * **Alta de cuentas** Se realiza Alta de cuentas en base a tipo de cuenta, moneda y sucursal.
 * **Consulta de cuentas** Se consultan las cuentas del usuario
+* **Trasferencias** Se realizan transferencias entre cuentas
+* **Consulta de transferencias** Se consultan las transferencias realizadas
 
 
 ### Repo Github
@@ -28,11 +30,17 @@ build/
 
 * `es5-bundled` is a bundled, minified build with a service worker. ES6 code is compiled to ES5 for compatibility with older browsers.
 
-### Serve
+### Serve build proyect
 
     npm start
 
-Este comando levanta un server Express en nodejs en <http://127.0.0.1:3000> que sirve la app generada en `build/es5-bundled/`
+Este comando levanta un server Express en nodejs en <http://127.0.0.1:3001> que sirve la app generada en `build/es5-bundled/`
+
+### Serve polymer proyect
+
+    polymer serve
+
+Levanta un server en <http://127.0.0.1:8081> que sirve la app que se esta desarrollando
 
 ### Deploy automatico e integracion continua
 
