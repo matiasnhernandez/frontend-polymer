@@ -26,15 +26,19 @@ Contruye la aplicacion en la carpeta `/build`, actualmente esta configurada en e
 ```
 build/
   es5-bundled/
+  es6-bundled/
+  esm-bundled/
 ```
 
 * `es5-bundled` is a bundled, minified build with a service worker. ES6 code is compiled to ES5 for compatibility with older browsers.
+* `es6-bundled` is a bundled, minified build with a service worker. ES6 code is served as-is. This build is for browsers that can handle ES6 code - see [building your project for production](https://www.polymer-project.org/3.0/toolbox/build-for-production#compiling) for a list.
+* `esm-bundled` is a bundled, minified build with a service worker. It uses standard ES module import/export statements for browsers that support them.
 
 ### Serve build proyect
 
     npm start
 
-Este comando levanta un server Express en nodejs en <http://127.0.0.1:3001> que sirve la app generada en `build/es5-bundled/`
+Este comando levanta un server Express en nodejs en <http://127.0.0.1:3001> que sirve la app generada en `build/es6-bundled/`
 
 ### Serve polymer proyect
 

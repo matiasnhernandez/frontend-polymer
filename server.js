@@ -5,7 +5,7 @@ var express = require('express');
 var app = express();
 
 // Serve static files from the main build directory
-app.use(express.static(__dirname + '/build/es5-bundled'));
+app.use(express.static(__dirname + '/build/esm-bundled'));
 
 // serve your elements
 app.use('/src', express.static('src'));
