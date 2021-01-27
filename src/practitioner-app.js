@@ -10,7 +10,7 @@ import '@polymer/app-route/app-location.js';
 import '@polymer/app-route/app-route.js';
 import '@polymer/iron-pages/iron-pages.js';
 import '@polymer/iron-selector/iron-selector.js';
-import './log-out.js';
+import './usuarios/log-out.js';
 import './my-icons.js';
 
 setPassiveTouchGestures(true);
@@ -233,25 +233,25 @@ class PractitionerApp extends PolymerElement {
         import('./home-page.js');
         break;
       case 'login':
-        import('./log-in.js');
-        break;
-      case 'datos-usuario':
-        import('./datos-usuario.js');
-        break;
-      case 'mis-cuentas':
-        import('./mis-cuentas.js');
-        break;
-      case 'alta-cuenta':
-        import('./alta-cuenta.js');
+        import('./usuarios/log-in.js');
         break;
       case 'sign-up':
-        import('./sign-up.js');
+        import('./usuarios/sign-up.js');
+        break;
+      case 'datos-usuario':
+        import('./usuarios/datos-usuario.js');
+        break;
+      case 'mis-cuentas':
+        import('./cuentas/mis-cuentas.js');
+        break;
+      case 'alta-cuenta':
+        import('./cuentas/alta-cuenta.js');
         break;
       case 'nueva-transferencia':
-        import('./nueva-transferencia.js');
+        import('./transferencias/nueva-transferencia.js');
         break;
       case 'mis-transferencias':
-        import('./mis-transferencias.js');
+        import('./transferencias/mis-transferencias.js');
         break;
       case 'view404':
         import('./my-view404.js');

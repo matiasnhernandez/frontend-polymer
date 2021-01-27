@@ -13,10 +13,10 @@ import '@polymer/neon-animation/animations/fade-out-animation.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/iron-iconset-svg/iron-iconset-svg.js';
 import '@polymer/paper-spinner/paper-spinner.js';
-import './cuenta-card.js';
-import './my-icons.js';
-import './shared-styles.js';
-import * as cuentaFunctions from './cuenta-functions.js';
+import '../cuentas/cuenta-card.js';
+import '../my-icons.js';
+import '../shared-styles.js';
+import * as cuentaFunctions from '../cuentas/cuenta-functions.js';
 
 class NuevaTransferencia extends PolymerElement {
 
@@ -30,41 +30,12 @@ class NuevaTransferencia extends PolymerElement {
 
         padding: 10px;
       }
-      .wrapper-btns {
-        margin-top: 15px;
-      }
-      paper-button.link {
-        color: #757575;
-      }
       
-      input {
-        position: relative; /* to make a stacking context */
-        outline: none;
-        box-shadow: none;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        max-width: 100%;
-        border: none;
-        color: var(--paper-input-container-input-color, var(--primary-text-color));
-        -webkit-appearance: none;
-        text-align: inherit;
-        vertical-align: bottom;
-        /* Firefox sets a min-width on the input, which can cause layout issues */
-        min-width: 0;
-        @apply --paper-font-subhead;
-        @apply --paper-input-container-input;
-      }
       paper-dropdown-menu{
         width: 80%;
       }
       paper-input-container{
         width: 80%;
-      }
-      iron-icon.success {
-        height: 50px;
-        width: 50px;
-        color: green;
       }
       
     </style>

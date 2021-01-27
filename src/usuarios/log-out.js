@@ -4,8 +4,8 @@ import '@polymer/iron-ajax/iron-ajax.js';
 import '@polymer/iron-input/iron-input.js';
 import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-input/paper-input.js';
-import './my-icons.js';
-import './shared-styles.js';
+import '../my-icons.js';
+import '../shared-styles.js';
 
 class LogOut extends PolymerElement {
 

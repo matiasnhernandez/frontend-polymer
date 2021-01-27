@@ -1,7 +1,7 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-icons/iron-icons.js';
-import './shared-styles.js';
-import * as cuentaFunctions from './cuenta-functions.js';
+import '../shared-styles.js';
+import * as cuentaFunctions from '../cuentas/cuenta-functions.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer';
 
 

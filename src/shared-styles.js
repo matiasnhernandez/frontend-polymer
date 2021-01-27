@@ -1,13 +1,3 @@
-/**
- * @license
- * Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
- */
-
 import '@polymer/polymer/polymer-element.js';
 
 const $_documentContainer = document.createElement('template');
@@ -15,9 +5,9 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
   <template>
     <style>
       .card {
-        display: table-cell;
+        display: block;
+        margin: 0 auto;
         width: 50%;
-        margin: 24px;
         padding: 16px;
         color: #757575;
         border-radius: 5px;
@@ -76,6 +66,48 @@ $_documentContainer.innerHTML = `<dom-module id="shared-styles">
         width: 150px;
         height: 150px;
       }
+      .wrapper-btns {
+        margin-top: 15px;
+        text-align: center;
+      }
+      paper-button.link {
+        color: #757575;
+      }
+
+      paper-button.primary {
+        background-color: var(--paper-indigo-500);
+        color: white;
+        --paper-button-raised-keyboard-focus: {
+          background-color: var(--paper-pink-a200) !important;
+          color: white !important;
+        };
+      }
+      
+
+      input {
+        position: relative; /* to make a stacking context */
+        outline: none;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+        border: none;
+        color: var(--paper-input-container-input-color, var(--primary-text-color));
+        -webkit-appearance: none;
+        text-align: inherit;
+        vertical-align: bottom;
+        /* Firefox sets a min-width on the input, which can cause layout issues */
+        min-width: 0;
+        @apply --paper-font-subhead;
+        @apply --paper-input-container-input;
+      }
+      iron-icon.success {
+        height: 50px;
+        width: 50px;
+        color: green;
+      }
+
     </style>
   </template>
 </dom-module>`;

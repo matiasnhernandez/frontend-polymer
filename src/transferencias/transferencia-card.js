@@ -1,8 +1,8 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-icons/iron-icons.js';
-import './shared-styles.js';
+import '../shared-styles.js';
 import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer';
-import * as cuentaFunctions from './cuenta-functions.js';
+import * as cuentaFunctions from '../cuentas/cuenta-functions.js';
 
 class TransferenciaCard extends PolymerElement {
 

@@ -6,8 +6,8 @@ import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-input/paper-input.js';
 import '@polymer/paper-progress/paper-progress.js'
 import './log-out.js'
-import './my-icons.js';
-import './shared-styles.js';
+import '../my-icons.js';
+import '../shared-styles.js';
 
 class LogIn extends PolymerElement {
 
@@ -21,32 +21,7 @@ class LogIn extends PolymerElement {
 
         padding: 10px;
       }
-      .wrapper-btns {
-        margin-top: 15px;
-      }
-      paper-button.link {
-        color: #757575;
-      }
       
-      input {
-        position: relative; /* to make a stacking context */
-        outline: none;
-        box-shadow: none;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        max-width: 100%;
-        background: transparent;
-        border: none;
-        color: var(--paper-input-container-input-color, var(--primary-text-color));
-        -webkit-appearance: none;
-        text-align: inherit;
-        vertical-align: bottom;
-        /* Firefox sets a min-width on the input, which can cause layout issues */
-        min-width: 0;
-        @apply --paper-font-subhead;
-        @apply --paper-input-container-input;
-      }
       paper-progress.blue {
         --paper-progress-active-color: var(--paper-light-blue-500);
         --paper-progress-secondary-color: var(--paper-light-blue-100);
@@ -95,7 +70,7 @@ class LogIn extends PolymerElement {
       <template is="dom-if" if="{{!loading}}">
         <div class="wrapper-btns">
           <paper-button raised class="primary" on-tap="postLogin">Log In</paper-button>
-          <a href='/registrar'>
+          <a href='/sign-up'>
             <paper-button class="link">Sign Up</paper-button>
           </a>
         </div>

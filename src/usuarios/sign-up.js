@@ -4,8 +4,8 @@ import '@polymer/iron-ajax/iron-ajax.js';
 import '@polymer/iron-input/iron-input.js';
 import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-input/paper-input.js';
-import './my-icons.js';
-import './shared-styles.js';
+import '../my-icons.js';
+import '../shared-styles.js';
 
 class SignUp extends PolymerElement {
 
@@ -19,31 +19,7 @@ class SignUp extends PolymerElement {
 
         padding: 10px;
       }
-      .wrapper-btns {
-        margin-top: 15px;
-      }
-      paper-button.link {
-        color: #757575;
-      }
       
-      input {
-        position: relative; /* to make a stacking context */
-        outline: none;
-        box-shadow: none;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        max-width: 100%;
-        border: none;
-        color: var(--paper-input-container-input-color, var(--primary-text-color));
-        -webkit-appearance: none;
-        text-align: inherit;
-        vertical-align: bottom;
-        /* Firefox sets a min-width on the input, which can cause layout issues */
-        min-width: 0;
-        @apply --paper-font-subhead;
-        @apply --paper-input-container-input;
-      }
     </style>
 
     <iron-ajax
