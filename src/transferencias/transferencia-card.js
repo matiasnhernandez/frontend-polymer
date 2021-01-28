@@ -57,6 +57,7 @@ class TransferenciaCard extends PolymerElement {
 
       <div class="flex-body">
         <div class="flex-column">
+          <div><b>Fecha: </b>[[fechaFormat]]</div>
           <div><b>Cuenta Origen: </b>[[descripCuentaOrigen]]</div>
           <div><b>Cuenta Destino: </b>[[descripCuentaDestino]]</div>
           <div><b>Concepto: </b>[[transferencia.concepto]]</div>
@@ -77,6 +78,10 @@ class TransferenciaCard extends PolymerElement {
         notify: true,
         reflectToAttribute: true
       },
+      fechaFormat: {
+        type: String,
+        computed: 'getFechaFormat(transferencia.fechaAlta)'
+      },
       descripCuentaOrigen: {
         type: String,
         computed: 'getDescripcionCuenta(transferencia.idCuentaOrigen)'
@@ -92,6 +97,12 @@ class TransferenciaCard extends PolymerElement {
     };
   }
 
+
+  getFechaFormat(fecha){
+    if (fecha) {
+      return fecha.substr(0,4) + "-" + fecha.substr(5,2) + "-" + fecha.substr(8,2) + " " + fecha.substr(11,2) + ":" + fecha.substr(14,2);
+    }
+  }
  
   getDescripcionCuenta(cuenta) {
 

@@ -87,7 +87,7 @@ class TransferenciaAlta extends PolymerElement {
 
     <template is="dom-if" if="{{!loading}}">
 
-      <div class="card">
+      <div class="card medium">
         
         <h1>Transferir</h1>
 

@@ -21,6 +21,10 @@ class LogIn extends PolymerElement {
 
         padding: 10px;
       }
+
+      h1 {
+        text-align:center;
+      }
       
       paper-progress.blue {
         --paper-progress-active-color: var(--paper-light-blue-500);
@@ -41,7 +45,7 @@ class LogIn extends PolymerElement {
 
     <app-location route="{{route}}"></app-location>
 
-    <div id="loginCard" class="card">
+    <div id="loginCard" class="card small">
 
       <h1>Log In</h1>
 

@@ -87,7 +87,7 @@ class CuentaAlta extends PolymerElement {
 
     <template is="dom-if" if="{{!loading}}">
 
-      <div class="card">
+      <div class="card medium">
         
         <h1>Nueva cuenta</h1>
 

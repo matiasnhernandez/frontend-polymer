@@ -20,7 +20,7 @@ class HomePage extends PolymerElement {
         }
       </style>
 
-      <div class="card">
+      <div class="card large">
         <h1>Bienvenidos a practitioner app!</h1>
 
         <p>Es una aplicacion desarrollada con polymer 3 y que cuenta con las siguientes funcionalidades: </p>
